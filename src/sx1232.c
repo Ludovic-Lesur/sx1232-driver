@@ -13,6 +13,8 @@
 #include "sx1232_hw.h"
 #include "types.h"
 
+#ifndef SX1232_DRIVER_DISABLE
+
 /*** SX1232 local macros ***/
 
 // SPI.
@@ -912,3 +914,5 @@ errors:
 	return status;
 }
 #endif
+
+#endif /* SX1232_DRIVER_DISABLE */

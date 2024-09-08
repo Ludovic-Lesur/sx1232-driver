@@ -62,6 +62,8 @@ typedef enum {
 	SX1232_ERROR_BASE_LAST = (SX1232_ERROR_BASE_DELAY + SX1232_DRIVER_DELAY_ERROR_BASE_LAST)
 } SX1232_status_t;
 
+#ifndef SX1232_DRIVER_DISABLE
+
 /*!******************************************************************
  * \enum SX1232_oscillator_t
  * \brief SX1232 oscillator types.
@@ -534,5 +536,7 @@ SX1232_status_t SX1232_read_fifo(uint8_t* fifo_data, uint8_t fifo_data_size);
 
 /*******************************************************************/
 #define SX1232_stack_exit_error(base, code) { ERROR_check_stack_exit(sx1232_status, SX1232_SUCCESS, base, code) }
+
+#endif /* SX1232_DRIVER_DISABLE */
 
 #endif /* __SX1232_H__ */

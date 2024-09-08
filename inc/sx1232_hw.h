@@ -8,8 +8,13 @@
 #ifndef __SX1232_HW_H__
 #define __SX1232_HW_H__
 
+#ifndef SX1232_DRIVER_DISABLE_FLAGS_FILE
+#include "sx1232_driver_flags.h"
+#endif
 #include "sx1232.h"
 #include "types.h"
+
+#ifndef SX1232_DRIVER_DISABLE
 
 /*** SX1232 HW functions ***/
 
@@ -59,5 +64,7 @@ void SX1232_HW_spi_write_16(uint16_t tx_data);
  * \retval		Function execution status.
  *******************************************************************/
 SX1232_status_t SX1232_HW_delay_milliseconds(uint32_t delay_ms);
+
+#endif /* SX1232_DRIVER_DISABLE */
 
 #endif /* __SX1232_HW_H__ */

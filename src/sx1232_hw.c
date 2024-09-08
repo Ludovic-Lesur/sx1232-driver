@@ -7,8 +7,13 @@
 
 #include "sx1232_hw.h"
 
+#ifndef SX1232_DRIVER_DISABLE_FLAGS_FILE
+#include "sx1232_driver_flags.h"
+#endif
 #include "sx1232.h"
 #include "types.h"
+
+#ifndef SX1232_DRIVER_DISABLE
 
 /*** SX1232 HW functions ***/
 
@@ -53,3 +58,5 @@ SX1232_status_t __attribute__((weak)) SX1232_HW_delay_milliseconds(uint32_t dela
 	UNUSED(delay_ms);
 	return status;
 }
+
+#endif /* SX1232_DRIVER_DISABLE */
