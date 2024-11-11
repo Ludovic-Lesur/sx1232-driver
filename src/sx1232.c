@@ -493,7 +493,7 @@ SX1232_status_t SX1232_set_dio_mapping(SX1232_dio_t dio, SX1232_dio_mapping_t di
         goto errors;
     }
     // Select register and mask.
-    reg_addr = SX1232_REGISTER_DIOMAPPING1 + (dio >> 2);
+    reg_addr = (SX1232_REGISTER_DIOMAPPING1 + (dio >> 2));
     // Read register.
     status = _SX1232_read_register(reg_addr, &reg_value);
     if (status != SX1232_SUCCESS) goto errors;
@@ -789,7 +789,7 @@ SX1232_status_t SX1232_set_preamble_detector(uint8_t preamble_size_bytes, uint8_
     }
     else {
         reg_value &= 0x9F; // Reset bits 5-6.
-        reg_value |= (preamble_size_bytes - 1);
+        reg_value |= ((preamble_size_bytes - 1) << 5);
         reg_value |= 0x80; // Enable preamble detector.
     }
     // Program register.
