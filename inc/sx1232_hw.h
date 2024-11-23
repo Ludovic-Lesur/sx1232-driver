@@ -38,10 +38,10 @@ SX1232_status_t SX1232_HW_de_init(void);
 
 /*!******************************************************************
  * \fn SX1232_status_t SX1232_HW_spi_write_read_16(uint16_t* tx_data, uint16_t* rx_data, uint8_t transfer_size)
- * \brief Write data to transceiver over SPI interface.
- * \param[in]   tx_data: Byte array to send.
- * \param[in]   transfer_size: Number of bytes to send and receive.
- * \param[out]  rx_data: Pointer to the received bytes.
+ * \brief Transfer data to transceiver over SPI interface.
+ * \param[in]   tx_data: Short array to send.
+ * \param[in]   transfer_size: Number of shorts to send and receive.
+ * \param[out]  rx_data: Pointer to the received shorts.
  * \retval      Function execution status.
  *******************************************************************/
 SX1232_status_t SX1232_HW_spi_write_read_16(uint16_t* tx_data, uint16_t* rx_data, uint8_t transfer_size);
