@@ -141,7 +141,7 @@ static SX1232_context_t sx1232_ctx;
 /*** SX1232 local functions ***/
 
 /*******************************************************************/
-SX1232_status_t _SX1232_write_register(SX1232_register_t register_address, uint8_t value) {
+static SX1232_status_t _SX1232_write_register(SX1232_register_t register_address, uint8_t value) {
     // Local variables.
     SX1232_status_t status = SX1232_SUCCESS;
     // Build SPI frame.
@@ -155,7 +155,7 @@ errors:
 }
 
 /*******************************************************************/
-SX1232_status_t _SX1232_read_register(SX1232_register_t register_address, uint8_t* value) {
+static SX1232_status_t _SX1232_read_register(SX1232_register_t register_address, uint8_t* value) {
     // Local variables.
     SX1232_status_t status = SX1232_SUCCESS;
     // Build SPI frame.
@@ -498,7 +498,7 @@ SX1232_status_t SX1232_set_dio_mapping(SX1232_dio_t dio, SX1232_dio_mapping_t di
     status = _SX1232_read_register(reg_addr, &reg_value);
     if (status != SX1232_SUCCESS) goto errors;
     // Compute register.
-    reg_value &= ~(0b11 << ((dio % 4) << 1));
+    reg_value &= (uint8_t) (~(0b11 << ((dio % 4) << 1)));
     reg_value |= (dio_mapping << ((dio % 4) << 1));
     // Write register.
     status = _SX1232_write_register(reg_addr, reg_value);
@@ -760,7 +760,7 @@ SX1232_status_t SX1232_set_lna_configuration(SX1232_lna_mode_t lna_mode, SX1232_
         goto errors;
     }
     reg_value &= 0x1F;
-    reg_value |= ((lna_gain_attenuation + 1) << 5);
+    reg_value |= (uint8_t) ((lna_gain_attenuation + 1) << 5);
     // Program register.
     status = _SX1232_write_register(SX1232_REGISTER_LNA, reg_value);
     if (status != SX1232_SUCCESS) goto errors;
@@ -789,7 +789,7 @@ SX1232_status_t SX1232_set_preamble_detector(uint8_t preamble_size_bytes, uint8_
     }
     else {
         reg_value &= 0x9F; // Reset bits 5-6.
-        reg_value |= ((preamble_size_bytes - 1) << 5);
+        reg_value |= (uint8_t) ((preamble_size_bytes - 1) << 5);
         reg_value |= 0x80; // Enable preamble detector.
     }
     // Program register.
