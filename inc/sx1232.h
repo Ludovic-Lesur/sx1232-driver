@@ -11,6 +11,7 @@
 #ifndef SX1232_DRIVER_DISABLE_FLAGS_FILE
 #include "sx1232_driver_flags.h"
 #endif
+#include "error.h"
 #include "types.h"
 
 /*** SX1232 macros ***/
@@ -56,7 +57,7 @@ typedef enum {
     SX1232_ERROR_RSSI_SAMPLING,
     SX1232_ERROR_FIFO_SIZE,
     // Low level drivers errors.
-    SX1232_ERROR_BASE_SPI = 0x0100,
+    SX1232_ERROR_BASE_SPI = ERROR_BASE_STEP,
     SX1232_ERROR_BASE_DELAY = (SX1232_ERROR_BASE_SPI + SX1232_DRIVER_SPI_ERROR_BASE_LAST),
     // Last base value.
     SX1232_ERROR_BASE_LAST = (SX1232_ERROR_BASE_DELAY + SX1232_DRIVER_DELAY_ERROR_BASE_LAST)
