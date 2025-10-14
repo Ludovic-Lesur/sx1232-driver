@@ -693,6 +693,33 @@ errors:
 
 #ifdef SX1232_DRIVER_RX_ENABLE
 /*******************************************************************/
+SX1232_status_t SX1232_calibrate_image(void) {
+    // Local variables.
+    SX1232_status_t status = SX1232_SUCCESS;
+    uint8_t reg_value = 0;
+    // Go to standby mode.
+    status = SX1232_set_mode(SX1232_MODE_STANDBY);
+    if (status != SX1232_SUCCESS) goto errors;
+    // Set RSSI sampling.
+    status = SX1232_set_rssi_sampling(SX1232_RSSI_SAMPLING_256);
+    if (status != SX1232_SUCCESS) goto errors;
+    // Start calibration.
+    status = _SX1232_read_register(SX1232_REGISTER_IMAGECAL, &reg_value);
+    if (status != SX1232_SUCCESS) goto errors;
+    reg_value &= 0x7F;
+    reg_value |= 0x40;
+    status = _SX1232_write_register(SX1232_REGISTER_IMAGECAL, reg_value);
+    if (status != SX1232_SUCCESS) goto errors;
+    // Wait for calibration to complete.
+    status = SX1232_HW_delay_milliseconds(SX1232_IMAGE_CALIBRATION_DELAY_MS);
+    if (status != SX1232_SUCCESS) goto errors;
+errors:
+    return status;
+}
+#endif
+
+#ifdef SX1232_DRIVER_RX_ENABLE
+/*******************************************************************/
 SX1232_status_t SX1232_set_rx_bandwidth(SX1232_rxbw_mantissa_t rxbw_mantissa, SX1232_rxbw_exponent_t rxbw_exponent) {
     // Local variables.
     SX1232_status_t status = SX1232_SUCCESS;

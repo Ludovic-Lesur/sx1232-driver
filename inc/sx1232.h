@@ -16,10 +16,13 @@
 
 /*** SX1232 macros ***/
 
-#define SX1232_STATE_SWITCH_DELAY_MS    5
-#define SX1232_OSCILLATOR_DELAY_MS      5
-#define SX1232_START_TX_DELAY_MS        (SX1232_STATE_SWITCH_DELAY_MS << 1)
-#define SX1232_START_RX_DELAY_MS        (SX1232_STATE_SWITCH_DELAY_MS << 1)
+#define SX1232_STATE_SWITCH_DELAY_MS        5
+#define SX1232_OSCILLATOR_DELAY_MS          5
+
+#define SX1232_START_TX_DELAY_MS            (SX1232_STATE_SWITCH_DELAY_MS << 1)
+#define SX1232_START_RX_DELAY_MS            (SX1232_STATE_SWITCH_DELAY_MS << 1)
+
+#define SX1232_IMAGE_CALIBRATION_DELAY_MS   8
 
 /*** SX1232 structures ***/
 
@@ -445,6 +448,18 @@ void SX1232_set_pa_power_value(uint8_t pa_power_value);
  * \retval      Function execution status.
  *******************************************************************/
 SX1232_status_t SX1232_start_rx(void);
+#endif
+
+#ifdef SX1232_DRIVER_RX_ENABLE
+/*!******************************************************************
+ * \fn SX1232_status_t SX1232_calibrate_image(void)
+ * \brief Perform manual I/Q calibration (V2B chip version errata).
+ * \brief Warning: this function switches the mode to standby and set the RSSI sampling to 256.
+ * \param[in]   none
+ * \param[out]  none
+ * \retval      Function execution status.
+ *******************************************************************/
+SX1232_status_t SX1232_calibrate_image(void);
 #endif
 
 #ifdef SX1232_DRIVER_RX_ENABLE
