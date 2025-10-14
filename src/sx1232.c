@@ -731,18 +731,19 @@ SX1232_status_t SX1232_set_lna_configuration(SX1232_lna_mode_t lna_mode, SX1232_
         status = SX1232_ERROR_LNA_GAIN_ATTENUATION;
         goto errors;
     }
-    // Read register.
-    status = _SX1232_read_register(SX1232_REGISTER_RXCONFIG, &reg_value);
-    if (status != SX1232_SUCCESS) goto errors;
-    // Compute register.
-    if (agc_enable == 0) {
-        reg_value &= 0xF7;
-    }
-    else {
-        reg_value |= 0x08;
-    }
+    // Set AGC configuration.
+    reg_value = (agc_enable != 0) ? 0x0E : 0x00;
     // Program register.
     status = _SX1232_write_register(SX1232_REGISTER_RXCONFIG, reg_value);
+    if (status != SX1232_SUCCESS) goto errors;
+    // Program default values.
+    status = _SX1232_write_register(SX1232_REGISTER_AGCREF, 0x13);
+    if (status != SX1232_SUCCESS) goto errors;
+    status = _SX1232_write_register(SX1232_REGISTER_AGCTHRESH1, 0x0E);
+    if (status != SX1232_SUCCESS) goto errors;
+    status = _SX1232_write_register(SX1232_REGISTER_AGCTHRESH2, 0x5B);
+    if (status != SX1232_SUCCESS) goto errors;
+    status = _SX1232_write_register(SX1232_REGISTER_AGCTHRESH3, 0xDB);
     if (status != SX1232_SUCCESS) goto errors;
     // Read register.
     status = _SX1232_read_register(SX1232_REGISTER_LNA, &reg_value);
