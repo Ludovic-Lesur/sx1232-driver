@@ -217,8 +217,8 @@ SX1232_status_t SX1232_set_oscillator(SX1232_oscillator_t oscillator) {
     // Wait TS_OSC = 250us typical.
     status = SX1232_HW_delay_milliseconds(SX1232_OSCILLATOR_DELAY_MS);
     if (status != SX1232_SUCCESS) goto errors;
-    // Trigger RC oscillator calibration.
-    status = _SX1232_write_register(SX1232_REGISTER_OSC, 0x0F);
+    // Disable output clock.
+    status = _SX1232_write_register(SX1232_REGISTER_OSC, 0x07);
     if (status != SX1232_SUCCESS) goto errors;
 errors:
     return status;
@@ -808,17 +808,14 @@ SX1232_status_t SX1232_set_preamble_detector(uint8_t preamble_size_bytes, uint8_
         status = SX1232_ERROR_PREAMBLE_SIZE;
         goto errors;
     }
-    // Read register.
-    status = _SX1232_read_register(SX1232_REGISTER_PREAMBLEDETECT, &reg_value);
-    if (status != SX1232_SUCCESS) goto errors;
+    // Load default value.
+    reg_value = 0x2A;
     // Check size;
-    if (preamble_size_bytes == 0) {
-        reg_value &= 0x7F; // Disable preamble detector.
-    }
-    else {
-        reg_value &= 0x9F; // Reset bits 5-6.
+    if (preamble_size_bytes > 0) {
+        // Enable preamble detector.
+        reg_value &= 0x9F;
         reg_value |= (uint8_t) ((preamble_size_bytes - 1) << 5);
-        reg_value |= 0x80; // Enable preamble detector.
+        reg_value |= 0x80;
     }
     // Program register.
     status = _SX1232_write_register(SX1232_REGISTER_PREAMBLEDETECT, reg_value);

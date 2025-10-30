@@ -73,7 +73,7 @@ typedef enum {
  * \brief SX1232 oscillator types.
  *******************************************************************/
 typedef enum {
-    SX1232_OSCILLATOR_QUARTZ,
+    SX1232_OSCILLATOR_QUARTZ = 0,
     SX1232_OSCILLATOR_TCXO,
     SX1232_OSCILLATOR_LAST
 } SX1232_oscillator_t;
@@ -83,7 +83,7 @@ typedef enum {
  * \brief SX1232 transceiver modes.
  *******************************************************************/
 typedef enum {
-    SX1232_MODE_SLEEP,
+    SX1232_MODE_SLEEP = 0,
     SX1232_MODE_STANDBY,
     SX1232_MODE_FSTX,
     SX1232_MODE_TX,
@@ -147,7 +147,7 @@ typedef enum {
  * \brief SX1232 RF output pin selection.
  *******************************************************************/
 typedef enum {
-    SX1232_RF_OUTPUT_PIN_RFO,
+    SX1232_RF_OUTPUT_PIN_RFO = 0,
     SX1232_RF_OUTPUT_PIN_PABOOST,
     SX1232_RF_OUTPUT_PIN_LAST
 } SX1232_rf_output_pin_t;
@@ -157,7 +157,7 @@ typedef enum {
  * \brief SX1232 modulations list.
  *******************************************************************/
 typedef enum {
-    SX1232_MODULATION_FSK,
+    SX1232_MODULATION_FSK = 0,
     SX1232_MODULATION_OOK,
     SX1232_MODULATION_LAST
 } SX1232_modulation_t;
@@ -167,7 +167,7 @@ typedef enum {
  * \brief SX1232 modulations shaping list.
  *******************************************************************/
 typedef enum {
-    SX1232_MODULATION_SHAPING_NONE,
+    SX1232_MODULATION_SHAPING_NONE = 0,
     SX1232_MODULATION_SHAPING_FSK_BT_1,
     SX1232_MODULATION_SHAPING_FSK_BT_05,
     SX1232_MODULATION_SHAPING_FSK_BT_03,
@@ -191,7 +191,7 @@ typedef enum {
  * \brief SX1232 data modes.
  *******************************************************************/
 typedef enum {
-    SX1232_DATA_MODE_PACKET,
+    SX1232_DATA_MODE_PACKET = 0,
     SX1232_DATA_MODE_CONTINUOUS,
     SX1232_DATA_MODE_LAST
 } SX1232_data_mode_t;
@@ -201,7 +201,7 @@ typedef enum {
  * \brief SX1232 RX bandwidth mantissa values.
  *******************************************************************/
 typedef enum {
-    SX1232_RXBW_MANTISSA_16,
+    SX1232_RXBW_MANTISSA_16 = 0,
     SX1232_RXBW_MANTISSA_20,
     SX1232_RXBW_MANTISSA_24,
     SX1232_RXBW_MANTISSA_LAST
