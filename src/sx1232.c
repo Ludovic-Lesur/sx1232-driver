@@ -483,6 +483,7 @@ SX1232_status_t SX1232_set_dio_mapping(SX1232_dio_t dio, SX1232_dio_mapping_t di
     SX1232_status_t status = SX1232_SUCCESS;
     uint8_t reg_addr = 0;
     uint8_t reg_value = 0;
+    uint8_t dio_shift = 0;
     // Check parameters.
     if (dio >= SX1232_DIO_LAST) {
         status = SX1232_ERROR_DIO;
@@ -498,8 +499,9 @@ SX1232_status_t SX1232_set_dio_mapping(SX1232_dio_t dio, SX1232_dio_mapping_t di
     status = _SX1232_read_register(reg_addr, &reg_value);
     if (status != SX1232_SUCCESS) goto errors;
     // Compute register.
-    reg_value &= (uint8_t) (~(0b11 << ((dio % 4) << 1)));
-    reg_value |= (dio_mapping << ((dio % 4) << 1));
+    dio_shift = ((3 - (dio % 4)) << 1);
+    reg_value &= (~(0b11 << dio_shift));
+    reg_value |= (dio_mapping << dio_shift);
     // Write register.
     status = _SX1232_write_register(reg_addr, reg_value);
     if (status != SX1232_SUCCESS) goto errors;
