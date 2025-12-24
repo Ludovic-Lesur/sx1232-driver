@@ -1,0 +1,21 @@
+/*
+ * sx1232_driver_flags.h
+ *
+ *  Created on: 01 sep. 2024
+ *      Author: Ludo
+ */
+
+#ifndef __SX1232_DRIVER_FLAGS_H__
+#define __SX1232_DRIVER_FLAGS_H__
+
+/*** SX1232 driver compilation flags ***/
+
+#cmakedefine SX1232_DRIVER_SPI_ERROR_BASE_LAST      @SX1232_DRIVER_SPI_ERROR_BASE_LAST@
+#cmakedefine SX1232_DRIVER_DELAY_ERROR_BASE_LAST    @SX1232_DRIVER_DELAY_ERROR_BASE_LAST@
+
+#cmakedefine SX1232_DRIVER_FXOSC_HZ                 @SX1232_DRIVER_FXOSC_HZ@
+
+#cmakedefine SX1232_DRIVER_TX_ENABLE
+#cmakedefine SX1232_DRIVER_RX_ENABLE
+
+#endif /* __SX1232_DRIVER_FLAGS_H__ */

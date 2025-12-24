@@ -34,3 +34,23 @@ Here is the versions compatibility table:
 | `SX1232_DRIVER_FXOSC_HZ` | `<value>` | Oscillator frequency in Hz. |
 | `SX1232_DRIVER_TX_ENABLE` | `defined` / `undefined` | Enable radio transmission functions. |
 | `SX1232_DRIVER_RX_ENABLE` | `defined` / `undefined` | Enable radio reception functions. |
+
+# Build
+
+A static library can be compiled by command line with `cmake`.
+
+```bash
+mkdir build
+cd build
+cmake -DCMAKE_TOOLCHAIN_FILE="<toolchain_file_path>" \
+      -DTOOLCHAIN_PATH="<arm-none-eabi-gcc_path>" \
+      -DTYPES_PATH="<types_file_path>" \
+      -DEMBEDDED_UTILS_PATH="<embedded-utils_path>" \
+      -DSX1232_DRIVER_SPI_ERROR_BASE_LAST=0 \
+      -DSX1232_DRIVER_DELAY_ERROR_BASE_LAST=0 \
+      -DSX1232_DRIVER_FXOSC_HZ=32000000 \
+      -DSX1232_DRIVER_TX_ENABLE=ON \
+      -DSX1232_DRIVER_RX_ENABLE=ON \
+      -G "Unix Makefiles" ..
+make all
+```
