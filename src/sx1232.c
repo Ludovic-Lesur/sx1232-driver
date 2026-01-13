@@ -19,16 +19,8 @@
 
 // SPI.
 #define SX1232_REGISTER_SPI_TRANSFER_SIZE       2
-// RF frequency range.
-#define SX1232_RF_FREQUENCY_HZ_MIN              862000000
-#define SX1232_RF_FREQUENCY_HZ_MAX              1020000000
 // FSK deviation range.
 #define SX1232_FSK_DEVIATION_MAX                16383
-// Output power ranges.
-#define SX1232_OUTPUT_POWER_RFO_MIN             0
-#define SX1232_OUTPUT_POWER_RFO_MAX             17
-#define SX1232_OUTPUT_POWER_PABOOST_MIN         2
-#define SX1232_OUTPUT_POWER_PABOOST_MAX         20
 // SX1232 oscillator frequency.
 #define SX1232_SYNC_WORD_MAXIMUM_SIZE_BYTES     8
 // SX1232 minimum and maximum bit rate.
@@ -499,8 +491,8 @@ SX1232_status_t SX1232_set_dio_mapping(SX1232_dio_t dio, SX1232_dio_mapping_t di
     status = _SX1232_read_register(reg_addr, &reg_value);
     if (status != SX1232_SUCCESS) goto errors;
     // Compute register.
-    dio_shift = ((3 - (dio % 4)) << 1);
-    reg_value &= (~(0b11 << dio_shift));
+    dio_shift = (uint8_t) ((3 - (dio % 4)) << 1);
+    reg_value &= (uint8_t) (~(0b11 << dio_shift));
     reg_value |= (dio_mapping << dio_shift);
     // Write register.
     status = _SX1232_write_register(reg_addr, reg_value);
