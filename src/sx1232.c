@@ -599,11 +599,11 @@ SX1232_status_t SX1232_set_rf_output_power(int8_t rf_output_power_dbm) {
     switch (sx1232_ctx.rf_output_pin) {
     case SX1232_RF_OUTPUT_PIN_RFO:
         // Check parameter.
-        if (rf_output_power_dbm > SX1232_OUTPUT_POWER_RFO_MAX) {
+        if (rf_output_power_dbm > SX1232_RF_OUTPUT_POWER_RFO_DBM_MAX) {
             status = SX1232_ERROR_RF_OUTPUT_POWER_OVERFLOW;
             goto errors;
         }
-        if (rf_output_power_dbm < SX1232_OUTPUT_POWER_RFO_MIN) {
+        if (rf_output_power_dbm < SX1232_RF_OUTPUT_POWER_RFO_DBM_MIN) {
             status = SX1232_ERROR_RF_OUTPUT_POWER_UNDERFLOW;
             goto errors;
         }
@@ -612,11 +612,11 @@ SX1232_status_t SX1232_set_rf_output_power(int8_t rf_output_power_dbm) {
         break;
     case SX1232_RF_OUTPUT_PIN_PABOOST:
         // Check parameter.
-        if (rf_output_power_dbm > SX1232_OUTPUT_POWER_PABOOST_MAX) {
+        if (rf_output_power_dbm > SX1232_RF_OUTPUT_POWER_PA_BOOST_DBM_MAX) {
             status = SX1232_ERROR_RF_OUTPUT_POWER_OVERFLOW;
             goto errors;
         }
-        if (rf_output_power_dbm < SX1232_OUTPUT_POWER_PABOOST_MIN) {
+        if (rf_output_power_dbm < SX1232_RF_OUTPUT_POWER_PA_BOOST_DBM_MIN) {
             status = SX1232_ERROR_RF_OUTPUT_POWER_UNDERFLOW;
             goto errors;
         }
