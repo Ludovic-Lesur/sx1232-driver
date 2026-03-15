@@ -20,7 +20,7 @@
 /*******************************************************************/
 SX1232_status_t __attribute__((weak)) SX1232_HW_init(void) {
     // Local variables.
-    SX1232_status_t status = SX1232_SUCCESS;
+    SX1232_status_t status = SX1232_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     return status;
 }
@@ -28,7 +28,7 @@ SX1232_status_t __attribute__((weak)) SX1232_HW_init(void) {
 /*******************************************************************/
 SX1232_status_t __attribute__((weak)) SX1232_HW_de_init(void) {
     // Local variables.
-    SX1232_status_t status = SX1232_SUCCESS;
+    SX1232_status_t status = SX1232_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     return status;
 }
@@ -36,7 +36,7 @@ SX1232_status_t __attribute__((weak)) SX1232_HW_de_init(void) {
 /*******************************************************************/
 SX1232_status_t __attribute__((weak)) SX1232_HW_spi_write_read_16(uint16_t* tx_data, uint16_t* rx_data, uint8_t transfer_size) {
     // Local variables.
-    SX1232_status_t status = SX1232_SUCCESS;
+    SX1232_status_t status = SX1232_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     UNUSED(tx_data);
     UNUSED(rx_data);
@@ -53,7 +53,7 @@ void __attribute__((weak)) SX1232_HW_spi_write_16(uint16_t tx_data) {
 /*******************************************************************/
 SX1232_status_t __attribute__((weak)) SX1232_HW_delay_milliseconds(uint32_t delay_ms) {
     // Local variables.
-    SX1232_status_t status = SX1232_SUCCESS;
+    SX1232_status_t status = SX1232_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     UNUSED(delay_ms);
     return status;
