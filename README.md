@@ -13,6 +13,7 @@ Here is the versions compatibility table:
 
 | **sx1232-driver** | **embedded-utils** |
 |:---:|:---:|
+| [sw2.2](https://github.com/Ludovic-Lesur/sx1232-driver/releases/tag/sw2.2) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
 | [sw2.1](https://github.com/Ludovic-Lesur/sx1232-driver/releases/tag/sw2.1) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
 | [sw2.0](https://github.com/Ludovic-Lesur/sx1232-driver/releases/tag/sw2.0) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
 | [sw1.10](https://github.com/Ludovic-Lesur/sx1232-driver/releases/tag/sw1.10) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
